@@ -1,3 +1,7 @@
+# test artifacts
+test_input.txt.enc
+test_output.txt
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
