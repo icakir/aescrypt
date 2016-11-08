@@ -1,26 +1,42 @@
-# aescrypt
+### aescrypt
 
-A Python script to encrypt/decrypt files with symmetric AES cipher-block
-chaining (CBC) mode.
+#### A Python 2 script to encrypt/decrypt files with symmetric AES cipher-block chaining (CBC) mode.
 
-## Usage
+```
+usage: aescrypt.py [-h] [-e] [-d] [-f] in_file
 
-File Encryption:
+positional arguments:
+  in_file        Input file
 
-    aescrypt.py [-f] infile [outfile]
+optional arguments:
+  -h, --help     show this help message and exit
+  -e, --encrypt  Encrypt file
+  -d, --decrypt  Decrypt file
+  -f, --force    Overwrite output file if it exists
 
-File decryption:
 
-    aescrypt.py -d [-f] infile [outfile]
+Examples:
 
-### Acknowledgements
+Encrypt file:
+
+./aescrypt.py -e <file name>
+
+
+Decrypt file:
+
+./aescrypt.py -d <file name>.enc
+
+
+
+#### Acknowledgements
 
 This script is derived from an answer to this StackOverflow question:
 
 http://stackoverflow.com/questions/16761458/
 
-I changed the key derivation function to use PBKDF2.
 
-## License
+
+
+#### License
 
 MIT License © 2015 Christopher Arndt
