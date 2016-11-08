@@ -1,15 +1,20 @@
-#!/usr/bin/env python
+#!/usr/bin/python2 
 # -*- coding: utf-8 -*-
-"""Test suite for aescrypt.py."""
+
+# This file is part of: aescrypt
+# https://github.com/BrainfuckSec/aescrypt
+#
+# Description: Testing suite for aescrpyt.py core program
+# Dependencies: python2-nose
 
 from __future__ import print_function, unicode_literals
 
+import sys
 from io import BytesIO
+from Crypto.Cipher import AES
+from nose.tools import raises
 
 from aescrypt import encrypt, decrypt
-from Crypto.Cipher import AES
-
-from nose.tools import raises
 
 password = 'q1w2e3r4'
 plaintext = """\
