@@ -1,6 +1,6 @@
 ## aescrypt
 
-### A Python 2 script to encrypt/decrypt files with symmetric AES cipher-block chaining (CBC) mode.
+#### A Python 2 script to encrypt/decrypt files with symmetric AES cipher-block chaining (CBC) mode.
 
 ```
 usage: aescrypt.py [-h] [-e] [-d] [-f] in_file
