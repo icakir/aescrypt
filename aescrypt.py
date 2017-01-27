@@ -2,12 +2,22 @@
 # -*- coding: utf-8 -*-
 
 # Program: aescrypt.py
-# Version: 0.1.0
+# Version: 0.2.0
 # Description: Encrypt/decrypt files with AES (CBC) mode
 
-# This program is fork repo of: https://github.com/SpotlightKid/aescrypt
-# and derived from an answer to this stackoverflow.com thread:
-# http://stackoverflow.com/questions/16761458/
+
+# Developers:
+# -----------
+#
+# This program is fork repo by Brainfuck of the original 
+# AES encryption implementation with Python 2 coded by
+# SpotlightKid (see the Copyright (c) and LICENSE as follow)
+#
+# Github Pages:
+# https://github.com/BrainfuckSec/aescrypt
+# https://github.com/SpotlightKid/aescrypt
+# and both programs derived from an answer to this stackoverflow.com 
+# thread: http://stackoverflow.com/questions/16761458/
 
 # The MIT License (MIT)
 #
@@ -50,12 +60,17 @@ from pbkdf2 import PBKDF2
 It overrides the default of hiding everything that begins with an underscore
 """
 __all__ = ("encrypt", "decrypt")
-SALT_MARKER = b"$" # header
+
+"""GLOBAL variables
+'$'' is a Header, wrap KDF iterations
+read encrypt description
+""" 
+SALT_MARKER = b"$" 
 ITERATIONS = 1000
 
 
 # Encrypt Function
-##################
+# ----------------
 def encrypt(in_file, out_file, password, key_size=32, salt_marker=SALT_MARKER,
         kdf_iterations=ITERATIONS, hash_type=SHA256):
     """Encryption algorithm: AES Cipher-block-chaining (CBC) mode
@@ -91,12 +106,12 @@ def encrypt(in_file, out_file, password, key_size=32, salt_marker=SALT_MARKER,
     elif not isinstance(salt_marker, bytes):
         raise TypeError("salt_marker value must be a byte instance.")
 
-    # KDF iterations
+    # KDF iterations 65535 is the max !
     if kdf_iterations >= 65536:
         raise ValueError("kdf_iterations value must be <= 65535.")
 
     # Assign values
-    ###############
+    # -------------- 
     bs = AES.block_size
     header = salt_marker + struct.pack(">H", kdf_iterations) + salt_marker
     """struct = Return a string containing the value of kdf_iterations
@@ -111,8 +126,6 @@ def encrypt(in_file, out_file, password, key_size=32, salt_marker=SALT_MARKER,
     out_file.write(iv)
     finished = False
 
-    # encrypt !
-    ###########
     while not finished:
         chunk = in_file.read(1024 * bs)
 
@@ -122,11 +135,12 @@ def encrypt(in_file, out_file, password, key_size=32, salt_marker=SALT_MARKER,
             chunk += (padding_lenght * chr(padding_lenght)).encode()
             finished = True
 
+        # encrypt !
         out_file.write(cipher.encrypt(chunk))
 
 
 # Decrypt function
-##################
+# ----------------
 def decrypt(in_file, out_file, password, key_size=32, salt_marker=SALT_MARKER,
         hash_type=SHA256):
     """Decrypt input file using password to derive key.
@@ -190,7 +204,7 @@ def decrypt(in_file, out_file, password, key_size=32, salt_marker=SALT_MARKER,
 
 
 # main() function
-#################
+# ---------------
 def main(args=None):
     parser = argparse.ArgumentParser(
     prog = "aescrypt.py",
