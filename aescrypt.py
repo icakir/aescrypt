@@ -14,7 +14,7 @@
 # SpotlightKid (see the Copyright (c) and LICENSE as follow)
 #
 # Github Pages:
-# https://github.com/BrainfuckSec/aescrypt
+# https://github.com/brainfucksec/aescrypt
 # https://github.com/SpotlightKid/aescrypt
 # and both programs derived from an answer to this stackoverflow.com 
 # thread: http://stackoverflow.com/questions/16761458/
